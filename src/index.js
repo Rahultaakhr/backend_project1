@@ -1,13 +1,7 @@
-import express from "express";
+import dotenv from "dotenv";
+import { dbConnetion } from "./db/index.js";
 
-const app =express()
+dotenv.config()
 
-const port =3000;
 
-app.get('/',(req,res)=>{
-    res.send("Hello Rahul  Rahul")
-})
-
-app.listen(port,()=>{
-    console.log(`Hello, localhost:${port}`);
-})
+dbConnetion()
