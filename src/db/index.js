@@ -9,7 +9,8 @@ try {
 
 
 } catch (error) {
-    console.log("MONGODB CONNETING FAILED ",Error);
+    console.log("MONGODB CONNETING FAILED ",error.message);
+    process.exit(1)
 }
 }
 export {dbConnetion}
