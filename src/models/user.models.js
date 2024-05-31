@@ -37,7 +37,7 @@ const userSchema = new Schema({
     },
     refreshToken: {
         type: String,
-        required: true
+        // required: true
     },
     watchHistory: [
         {
@@ -52,8 +52,8 @@ const userSchema = new Schema({
 userSchema.pre("save", async function (next) {
     try {
         if (!this.isModified("password")) return next();
-
-        this.password = await bcrypt.hash(this.password, '10')
+        const salt_round = 10;
+        this.password = await bcrypt.hash(this.password, salt_round)
         next()
     } catch (error) {
         throw new Error(error)
