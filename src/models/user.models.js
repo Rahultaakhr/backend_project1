@@ -37,7 +37,7 @@ const userSchema = new Schema({
     },
     refreshToken: {
         type: String,
-        // required: true
+
     },
     watchHistory: [
         {
@@ -69,7 +69,13 @@ userSchema.methods.isPasswordCorrect = async function (password) {
     }
 }
 
-userSchema.methods.generateAccessToken = async function () {
+
+// here i do a commom maybe a big mistake  which is I write a async function which return a promise but here i dont need a promise,because  promise create a bug here 
+
+// userSchema.methods.generateAccessToken = async function () {
+
+
+userSchema.methods.generateAccessToken = function () {
     return jwt.sign(
         {
             _id: this._id,
@@ -84,7 +90,16 @@ userSchema.methods.generateAccessToken = async function () {
         }
     )
 }
-userSchema.methods.generateRefreshToken = async function () {
+
+
+
+// here i do a commom maybe a big mistake  which is I write a async function which return a promise but here i dont need a promise,because  promise create a bug here 
+
+// userSchema.methods.generateRefreshToken = async function () {
+
+
+
+userSchema.methods.generateRefreshToken = function () {
     return jwt.sign(
         {
             _id: this._id,
