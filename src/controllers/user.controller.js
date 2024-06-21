@@ -241,6 +241,9 @@ const changeOldPassword = asyncHandler(async (req, res) => {
 
 
 })
-const updateUserDetails = asyncHandler(async (req, res) => {})
+const updateUserDetails = asyncHandler(async (req, res) => {
+    const { username, email}= req.body
+    const user = await User.findById(req.user?._id);
+})
 
 export { registerUser, loginUser, logoutUser, refreshAccessToken }
