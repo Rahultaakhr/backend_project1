@@ -307,4 +307,24 @@ const updateAvatar = asyncHandler(async (req, res) => {
     )
 })
 
+const getUserChannel=asyncHandler(async(req,res)=>{
+    const {username}=req.params
+    if(!username.trim()){
+        throw new ApiError(400,"Username not valide")
+
+    }
+   const channel =await User.aggregate([
+    {
+        $match:{
+            username:username?.toLowerCase()
+        }
+    },
+    {
+        $lookup:{
+            from:""
+        }
+    }
+   ])
+})
+
 export { registerUser, loginUser, logoutUser, refreshAccessToken, changeOldPassword, updateUserDetails, getCurrentUser, updateAvatar }
